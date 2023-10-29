@@ -26,13 +26,40 @@ conn.commit()
 predefined_conn = sqlite3.connect('predefined_accounts.db')
 predefined_cursor = predefined_conn.cursor()
 predefined_accounts = [
-    (1001, "Parvinder Singh", 30, "Male", "Savings", 500000.0, "123-456-7890", "Powai", "singh@email.com", 4999.0),
-    (10013, "Jeet Sawant", 78, "Male", "Salary", 5900000.0, "987-654-4112", "Sea Woods", "lavanya@email.com", 60.0),
-    (10014, "Vipul Gandhi", 36, "Male", "Current", 199900.0, "987-687-3110", "Bhayander", "vgandhi@email.com", 23.0),
+    (1001, "Parvinder Singh", 30, "Male", "Savings", 500000.0, "123-456-7890", "Powai", "singh@email.com",
+     "4999.0 debited"),
+    (1002, "Sia Shah", 25, "Female", "Savings", 79000.0, "987-654-3210", "Borivali East", "sshah@email.com",
+     "7500.0 credited"),
+    (1003, "Deep Sharma", 27, "Male", "Current", 99000.0, "987-654-3890", "Andheri West", "ssdeep@email.com",
+     "29.0 credited"),
+    (1004, "Rohan", 39, "Male", "Savings", 45000.0, "987-654-3778", "Malad West", "coolrohan@email.com",
+     "20000.0 debited"),
+    (1005, "Rekha Rao", 34, "Female", "Salary", 7909000.0, "987-654-6789", "Bandra", "rrao@email.com",
+     "75000.0 credited"),
+    (1006, "Shreya Vora", 42, "Female", "Savings", 8020.0, "987-654-3760", "Mira Road", "shreyav@email.com",
+     "45200 credited"),
+    (1007, "Meghna verma", 66, "Female", "Savings", 7800000.0, "987-634-9076", "Santa Cruz", "mvrm@email.com",
+     "15000 debited"),
+    (1008, "Dev Patel", 56, "Male", "Current", 12000.0, "987-654-6666", "Thane", "dp1998@email.com",
+     "740.0 credited"),
+    (1009, "Ruh Gupta", 19, "Female", "Saving", 12500000.0, "987-654-3210", "Bandra", "gupta@email.com",
+     "50.0 credited"),
+    (10010, "Jay Sanil", 24, "Male", "Salary", 790.0, "987-654-3110", "Vasai", "sanil@email.com",
+     "60000.0 credited"),
+    (10011, "Saee Sawant", 76, "Female", "Savings", 988800.0, "987-854-3110", "Jogeshwari", "ssawant@email.com",
+     "60800.0 debited"),
+    (10012, "Dhruva Shah", 28, "Female", "Salary", 19040000.0, "987-654-3010", "Worli", "riyans@email.com",
+     "340000.0 credited"),
+    (10013, "Jeet Sawant", 78, "Male", "Salary", 5900000.0, "987-654-4112", "Sea Woods", "lavanya@email.com",
+     "60.0 credited"),
+    (10014, "Vipul Gandhi", 36, "Male", "Current", 199900.0, "987-687-3110", "Bhayander", "vgandhi@email.com",
+     "23.0 debited"),
+
 ]
 
 # Function to add predefined accounts if they don't exist in the database
 def add_predefined_accounts():
+
     for account in predefined_accounts:
         account_number = account[0]
         cursor.execute("SELECT account_number FROM accounts WHERE account_number = ?", (account_number,))
@@ -42,6 +69,7 @@ def add_predefined_accounts():
 
     conn.commit()
 
+add_predefined_accounts()
 # Function to create a new bank account and add to both databases
 def create_account():
     def submit():
